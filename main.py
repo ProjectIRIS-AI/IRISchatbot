@@ -3,14 +3,23 @@ import json
 import time
 from difflib import get_close_matches
 
+import pyttsx3
+
 # Settings
 knowledgebase_folder = "Knowledgebase"
 knowledgebase_file = "Iris.json"
+
+tts = False
 
 bot_prompt = "Iris: "
 user_prompt = ">> "
 default_notfound_error = "I don't know how to respond. Please teach me or type [SKIP]."
 default_iris_thank = "Thank you! I learnt a new thing."
+
+engine = pyttsx3.init()
+engine.setProperty('rate', 150)
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[2].id)
 
 
 # Knowledge base directory
@@ -44,13 +53,17 @@ def get_response_for_prompt(prompt: str, knowledge_base: dict) -> str | None:
             return p["response"]
 
 
-# Typewritter Effect
 def typewrite(prefix, text, delay=0.05):
     print(prefix, end='', flush=True)  # Print the prefix normally
     for char in text:
         print(char, end='', flush=True)  # Print each character of the text with the typewriter effect
         time.sleep(delay)
     print()  # Add a newline after printing the text
+    if tts:
+        engine.say(text)  # Speak the entire text
+        engine.runAndWait()  # Wait for speech to finish
+    else:
+        pass
 
 
 # Main Function
@@ -71,6 +84,7 @@ def main():
         if best_match:
             response: str = get_response_for_prompt(best_match, knowledge_base)
             typewrite(bot_prompt, response)
+
         else:
             print(bot_prompt, default_notfound_error)
             new_response: str = input(user_prompt)
