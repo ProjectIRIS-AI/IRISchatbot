@@ -10,6 +10,7 @@ knowledgebase_folder = "Knowledgebase"
 knowledgebase_file = "Iris.json"
 
 tts = False
+typewritter_effect = True
 
 bot_prompt = "Iris: "
 user_prompt = ">> "
@@ -54,16 +55,19 @@ def get_response_for_prompt(prompt: str, knowledge_base: dict) -> str | None:
 
 
 def typewrite(prefix, text, delay=0.05):
-    print(prefix, end='', flush=True)  # Print the prefix normally
-    for char in text:
-        print(char, end='', flush=True)  # Print each character of the text with the typewriter effect
-        time.sleep(delay)
-    print()  # Add a newline after printing the text
-    if tts:
-        engine.say(text)  # Speak the entire text
-        engine.runAndWait()  # Wait for speech to finish
+    if typewritter_effect:
+        print(prefix, end='', flush=True)  # Print the prefix normally
+        for char in text:
+            print(char, end='', flush=True)  # Print each character of the text with the typewriter effect
+            time.sleep(delay)
+        print()  # Add a newline after printing the text
+        if tts:
+            engine.say(text)  # Speak the entire text
+            engine.runAndWait()  # Wait for speech to finish
+        else:
+            pass
     else:
-        pass
+        print(prefix, text)
 
 
 # Main Function
