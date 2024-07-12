@@ -15,7 +15,9 @@ In order for her to work correctly, the file structure should be as shown below.
 ```
 Root
 ├── IRISchatbot
-│   └── main.py
+│   ├── main.py
+│   ├── discord_ver.py
+│   └── channels.json
 └── Knowledgebase
     ├── Alpha.json
     └── Beta.json
@@ -31,6 +33,12 @@ Root
         ├──typewritter.py
         └── texttospeech.py
 ```
+
+## Discord Version
+The Discord version uses a different knowledgebase JSON file for different channels, making it easier to switch between knowledgebases.
+
+Iris will ignore messages that starts with `>` which makes it convenient for chatting with other users while talking with her.
+
 #
 28 March 2024
 
