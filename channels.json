@@ -1,0 +1,12 @@
+{
+  "channels": {
+    "Iris_English": {
+      "file_name": "Iris.json",
+      "channel_id": 1209798059563941908
+    },
+    "MK_Iris": {
+      "file_name": "MK_Iris.json",
+      "channel_id": 1209403282544529448
+    }
+  }
+}
