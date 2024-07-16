@@ -39,6 +39,9 @@ The Discord version uses a different knowledgebase JSON file for different chann
 
 Iris will ignore messages that starts with `>` which makes it convenient for chatting with other users while talking with her.
 
+## Flowchart
+![Flowchart](assets/flowchart.png/)
+
 #
 28 March 2024
 
